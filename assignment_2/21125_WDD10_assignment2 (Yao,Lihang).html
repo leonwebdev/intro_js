@@ -9,17 +9,41 @@
 <body>
     <script>
         //set variables
+        var user_email = 'default@default.com';
+        var index_ampersand;
+        var index_period;
+        var user_name;
+
         //set functions
+        function searchIndex(){
+            index_ampersand = user_email.indexOf('@');
+            index_period = user_email.indexOf('.');
+        }
         //start main
         //ask for an email
+        user_email = prompt('Please input your email.');
         //search index of ampersand and period
+        searchIndex();
         //while loop (index of ampersand and period not found)
+        while (index_ampersand == -1 && index_period == -1){
             //alert the email is incorrect
+            alert('The email you input is invalid.')
             //ask for an email
+            user_email = prompt('Please input your email.');
             //search index of ampersand and period
+            searchIndex();
+        }
         //end while
         //extract user name
+        user_name = user_email.substring(0,index_ampersand);
         //print out
+        document.write(
+            `
+            <p>The "@" symbol is at position <strong>${index_ampersand}</strong></p>
+            <p>The "." character is at position <strong>${index_period}</strong></p>
+            <p>Thank you, ${user_name}. Your email: ${user_email} appears to be ok.</p>
+            `
+        )
         //stop
     </script>
 </body>
