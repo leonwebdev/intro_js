@@ -25,7 +25,7 @@
         //search index of ampersand and period
         searchIndex();
         //while loop (index of ampersand and period not found)
-        while (index_ampersand == -1 && index_period == -1){
+        while (index_ampersand == -1 || index_period == -1){
             //alert the email is incorrect
             alert('The email you input is invalid.')
             //ask for an email
@@ -45,6 +45,7 @@
             `
         )
         //stop
+        //JavaScript is the best programming language except scope T_T confusing drives me mad
     </script>
 </body>
 </html>
