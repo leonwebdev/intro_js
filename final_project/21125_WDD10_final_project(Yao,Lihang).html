@@ -10,7 +10,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>An exceptional reminder that you forgot to use</title>
     <style>
+        body {
+            margin: 0 auto;
+            max-width: 700px;
+            font-size: 16px;
+            font-family: 'Roboto Slab', Georgia, 'Times New Roman', Times, serif;
+        }
 
+        #container {
+            display: flex;
+            width: min-content
+        }
+
+        #showbox {
+            min-width: 400px;
+            margin-right: 20px;
+        }
+
+        .flex-box {
+            /* margin-right: 20px; */
+        }
+
+        .s-box {
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+
+        span {
+            display: block;
+        }
+
+        #banner {
+            text-align: center;
+            padding: 25px;
+        }
+
+        h1 {
+            width: max-content;
+            margin: 0 auto;
+            background: rgb(17, 132, 252);
+            background: linear-gradient(147deg, rgba(17, 132, 252, 1) 9%, rgba(251, 23, 72, 1) 55%, rgba(255, 241, 20, 1) 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        button {
+            background: #5E5DF0;
+            border-radius: 999px;
+            box-shadow: #5E5DF0 0 10px 20px -10px;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            font-weight: 700;
+            line-height: 24px;
+            opacity: 1;
+            cursor: pointer;
+            padding: 8px 18px;
+            border: 0;
+            display: block;
+            margin-bottom: 30px;
+            width: 150px;
+        }
+
+        button:hover {
+            background: #0a0ab8;
+        }
     </style>
 </head>
 
@@ -18,11 +83,11 @@
 
     <div>
         <div id="banner">
-
+            <h1>An exceptional reminder<span>that you forgot to use</span></h1>
         </div>
-        <div id="container">
-            <div id="showbox"></div>
-            <div id="buttons">
+        <div id="container" class="s-box">
+            <div id="showbox" class="s-box flex-box"></div>
+            <div id="buttons" class="s-box flex-box">
                 <button id="add_items">Add a task</button>
                 <button id="delete_items">Remove a task</button>
             </div>
