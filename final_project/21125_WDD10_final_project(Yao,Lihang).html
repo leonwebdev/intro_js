@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An exceptional reminder that you forgot to use</title>
+    <style>
+        body {
+            margin: 0 auto;
+            max-width: 700px;
+            font-size: 16px;
+            font-family: 'Roboto Slab', Georgia, 'Times New Roman', Times, serif;
+        }
+
+        body>div {
+            margin-bottom: 50px;
+        }
+
+        #container {
+            display: flex;
+            width: min-content;
+        }
+
+        #showbox {
+            min-width: 430px;
+            margin-right: 20px;
+        }
+
+        .s-box {
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+
+        span {
+            display: block;
+        }
+
+        #banner {
+            text-align: center;
+            padding: 25px;
+        }
+
+        h1 {
+            width: max-content;
+            margin: 0 auto;
+            background: rgb(17, 132, 252);
+            background: linear-gradient(147deg, rgba(17, 132, 252, 1) 9%, rgba(251, 23, 72, 1) 55%, rgba(255, 241, 20, 1) 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        button {
+            background: #5E5DF0;
+            border-radius: 999px;
+            box-shadow: #5E5DF0 0 10px 20px -10px;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            font-weight: 700;
+            line-height: 24px;
+            opacity: 1;
+            cursor: pointer;
+            padding: 8px 18px;
+            border: 0;
+            display: block;
+            margin-bottom: 30px;
+            width: 130px;
+        }
+
+        button:hover {
+            background: #0a0ab8;
+        }
+
+        .showbox_row {
+            display: flex;
+            height: max-content;
+        }
+
+        .showbox_item {
+            background: #9fe4ff;
+            border-radius: 10px;
+            box-shadow: #9fe4ff 0 10px 20px -10px;
+            box-sizing: border-box;
+            color: #000;
+            font-weight: 400;
+            line-height: 24px;
+            opacity: 1;
+            padding: 8px 15px;
+            border: 0;
+            display: block;
+            margin-bottom: 30px;
+            min-height: 40px;
+            margin-right: 10px;
+            flex-basis: 10px;
+            flex-grow: 1;
+            flex-shrink: 0;
+            word-wrap: break-word;
+        }
+
+        #showbox .showbox_item:first-of-type {
+            flex-basis: 10px;
+            flex-grow: 0;
+            flex-shrink: 0;
+            max-height: 40px;
+        }
+
+        #showbox .showbox_item:last-of-type {
+            margin-right: 0;
+        }
+
+        div#showbox div.showbox_row:nth-of-type(even) div.showbox_item {
+            background: #ffc8fc;
+            box-shadow: #ffc8fc 0 10px 20px -10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <div id="banner">
+            <h1>An exceptional reminder<span>that you forgot to use</span></h1>
+        </div>
+        <div id="container" class="s-box">
+            <div id="showbox" class="s-box"></div>
+            <div id="buttons" class="s-box">
+                <button id="add_items" onclick="addTask()">Add a task</button>
+                <button id="delete_items" onclick="removeTask()">Remove a task</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //***********Global variables***************
+        var list_item = [];
+        var list_due_date = [];
+        // default value for test
+        // list_item[0]='test item';
+        // list_due_date[0]='default due date';
+        // showList();
+
+        //***********Functions ***************
+        function addTask() {
+            var ask_add_item = prompt('Please input your task to do.');
+            list_item.push(ask_add_item);
+            var ask_add_date = prompt('Please input your due date.');
+            list_due_date.push(ask_add_date);
+            showList();
+        }
+
+        function removeTask() {
+            var ask_remove_item = prompt('Please input index of item you wanna remove');
+            var condition_ask_remove_item = isNaN(parseInt(ask_remove_item));
+            console.log(condition_ask_remove_item);
+            // Check if input is a number less than 1
+            if (parseInt(ask_remove_item) < 1) {
+                alert('The index is not valid, please try again.');
+                return;
+            }
+            // Check if input is not a number
+            if (condition_ask_remove_item) {
+                alert('The index is not valid, please try again.');
+                return;
+            }
+            // Do the remove function
+            var index_remove = parseInt(ask_remove_item) - 1;
+            console.log(index_remove);
+            list_item.splice(index_remove, 1);
+            list_due_date.splice(index_remove, 1);
+            showList();
+        }
+
+        function showList() {
+            // Erase the showbox everytime prior to show the output
+            document.getElementById('showbox').innerHTML = '';
+            // Show output by for loop
+            for (let i = 0; i < list_item.length; i++) {
+                document.getElementById('showbox').innerHTML += '<div class="showbox_row"><div class="showbox_item">' + parseInt(i + 1) + '</div>' + '<div class="showbox_item">' + list_item[i] + '</div>' + '<div class="showbox_item">' + list_due_date[i] + '</div></div>';
+                // document.getElementById('showbox').innerHTML += '<div class="showbox_row"><div class="showbox_item" style="flex-grow: 1">' + parseInt(i + 1) + '</div>' + '<div class="showbox_item" style="flex-grow: 8">' + list_item[i] + '</div>' + '<div class="showbox_item" style="flex-grow: 8">' + list_due_date[i] + '</div></div>'
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
