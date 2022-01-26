@@ -17,6 +17,10 @@
             font-family: 'Roboto Slab', Georgia, 'Times New Roman', Times, serif;
         }
 
+        body>div {
+            margin-bottom: 50px;
+        }
+
         #container {
             display: flex;
             width: min-content;
@@ -27,9 +31,9 @@
             margin-right: 20px;
         }
 
-        .flex-box {
-            /* margin-right: 20px; */
-        }
+        /* .flex-box {
+            margin-right: 20px;
+        } */
 
         .s-box {
             border-radius: 10px;
@@ -95,7 +99,7 @@
             border: 0;
             display: block;
             margin-bottom: 30px;
-            height: 100%;
+            min-height: 40px;
             margin-right: 10px;
             flex-basis: 10px;
             flex-grow: 1;
@@ -107,6 +111,7 @@
             flex-basis: 10px;
             flex-grow: 0;
             flex-shrink: 0;
+            max-height: 40px;
         }
 
         #showbox .showbox_item:last-of-type {
@@ -117,7 +122,6 @@
             background: #ffc8fc;
             box-shadow: #ffc8fc 0 10px 20px -10px;
         }
-
     </style>
 </head>
 
@@ -155,13 +159,33 @@
         }
 
         function removeTask() {
-
+            var ask_remove_item = prompt('Please input index of item you wanna remove');
+            var condition_ask_remove_item = isNaN(parseInt(ask_remove_item));
+            console.log(condition_ask_remove_item);
+            // Check if input is a number less than 1
+            if (parseInt(ask_remove_item) < 1) {
+                alert('The index is not valid, please try again.');
+                return;
+            }
+            // Check if input is not a number
+            if (condition_ask_remove_item) {
+                alert('The index is not valid, please try again.');
+                return;
+            }
+            // Do the remove function
+            var index_remove = parseInt(ask_remove_item) - 1;
+            console.log(index_remove);
+            list_item.splice(index_remove, 1);
+            list_due_date.splice(index_remove, 1);
+            showList();
         }
 
         function showList() {
+            // Erase the showbox everytime prior to show the output
             document.getElementById('showbox').innerHTML = '';
+            // Show output by for loop
             for (let i = 0; i < list_item.length; i++) {
-                document.getElementById('showbox').innerHTML += '<div class="showbox_row"><div class="showbox_item">' + parseInt(i + 1) + '</div>' + '<div class="showbox_item">' + list_item[i] + '</div>' + '<div class="showbox_item">' + list_due_date[i] + '</div></div>'
+                document.getElementById('showbox').innerHTML += '<div class="showbox_row"><div class="showbox_item">' + parseInt(i + 1) + '</div>' + '<div class="showbox_item">' + list_item[i] + '</div>' + '<div class="showbox_item">' + list_due_date[i] + '</div></div>';
                 // document.getElementById('showbox').innerHTML += '<div class="showbox_row"><div class="showbox_item" style="flex-grow: 1">' + parseInt(i + 1) + '</div>' + '<div class="showbox_item" style="flex-grow: 8">' + list_item[i] + '</div>' + '<div class="showbox_item" style="flex-grow: 8">' + list_due_date[i] + '</div></div>'
             }
         }
